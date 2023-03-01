@@ -1,7 +1,6 @@
 # bot.py
 
 import os
-import discord
 from datetime import datetime, time
 from dotenv import load_dotenv
 
