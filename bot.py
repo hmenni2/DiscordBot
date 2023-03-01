@@ -1,8 +1,3 @@
-'''
-Created on Mar 1, 2023
-
-@author: Haskell
-'''
 # bot.py
 
 import os
@@ -16,10 +11,6 @@ GUILD = os.getenv('DISCORD_GUILD')
 MEMBER = client.get_user(238093622568812544)
 
 client = discord.Client()
-
-@client.event
-async def on_ready():
-    printf(f'{client.user} has connected to {GUILD}.')
     
 @client.listen()
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
