@@ -21,11 +21,13 @@ async def on_ready():
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
     check_time = datetime.now(tz.utc)
     dotw = datetime.now().weekday()
+    sBreak = check_time.replace(hour=18, minute=0, second=0, microsecond=0)
+    eBreak = check_time.replace(hour=19, minute=0, second=0, microsecond=0)
     cutoff = check_time.replace(hour=22, minute=0, second=0, microsecond=0)
     
     print(f'Detected User at {check_time}.')
     
-    if dotw < 5 and check_time < cutoff:
+    if (dotw < 5) and ((checktime < sBreak) or (eBreak < check_time < cutoff)):
         if after.channel is None:
             return
         else:
