@@ -22,7 +22,7 @@ async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: disco
     check_time = datetime.utcnow().time
     dotw = datetime.now().weekday()
     
-    if dotw < 5 & checktime <= time(21,59):
+    if dotw < 5 and check_time < time(21,59):
         if after.channel is None:
             return
         else:
