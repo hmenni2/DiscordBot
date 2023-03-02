@@ -21,12 +21,15 @@ async def on_ready():
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
     check_time = datetime.utcnow().time()
     dotw = datetime.now().weekday()
-    cutoff = checktime.replace(hour=22, minute=0, second=0, microsecond=0)
+    cutoff = check_time.replace(hour=22, minute=0, second=0, microsecond=0)
+    
+    print(f'Detected User at {check_time}.')
     
     if dotw < 5 and check_time < cutoff:
         if after.channel is None:
             return
         else:
+            print(f'Attempting to Disconnect User.')
             await MEMBER.edit(voice_channel=None)
     else:
         return
