@@ -19,10 +19,11 @@ async def on_ready():
     
 @client.event
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
-    check_time = datetime.now(timezone.utc)
+    check_time = datetime.utcnow().time()
     dotw = datetime.now().weekday()
+    cutoff = checktime.replace(hour=22, minute=0, second=0, microsecond=0)
     
-    if dotw < 5 and check_time <= datetime.time(21,59):
+    if dotw < 5 and check_time < cutoff:
         if after.channel is None:
             return
         else:
