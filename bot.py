@@ -1,21 +1,23 @@
 # bot.py
 
 import os
+import discord
 from datetime import datetime, time
 from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('GUILD_ID')
-MEMBER = client.get_user(238093622568812544)
 
 client = discord.Client()
 
+MEMBER = client.get_user(238093622568812544)
+
 @client.event
 async def on_ready():
-    printf(f'Logged in as {client.user}.')
+    print(f'Logged in as {client.user}.')
     
-@client.listen()
+@client.event
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
     check_time = datetime.utcnow().time
     dotw = datetime.now().weekday()
