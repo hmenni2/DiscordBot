@@ -13,14 +13,14 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    printf(f'{client.user} has connected to {GUILD}.')
+    printf(f'Logged in as {client.user}.')
     
 @client.listen()
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
     check_time = datetime.utcnow().time
     dotw = datetime.now().weekday()
     
-    if dotw < 5 && checktime <= time(21,59):
+    if dotw < 5 & checktime <= time(21,59):
         if after.channel is None:
             return
         else:
