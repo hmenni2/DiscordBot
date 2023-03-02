@@ -2,7 +2,7 @@
 
 import os
 import discord
-import datetime
+from datetime import datetime, time
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,21 +19,21 @@ async def on_ready():
     
 @client.event
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
-    check_time = datetime.now(tz.utc)
-    dotw = datetime.now().weekday()
+    check_time = (datetime.datetime.now()).time()
+    DotW = datetime.now().weekday()
     sBreak = check_time.replace(hour=18, minute=0, second=0, microsecond=0)
     eBreak = check_time.replace(hour=19, minute=0, second=0, microsecond=0)
     cutoff = check_time.replace(hour=22, minute=0, second=0, microsecond=0)
     
     print(f'Detected User at {check_time}.')
     
-    if (dotw < 5) and ((checktime < sBreak) or (eBreak < check_time < cutoff)):
+    if (DotW < 5) and ((checktime < sBreak) or (eBreak < check_time < cutoff)):
         if after.channel is None:
             return
         else:
             print(f'Attempting to Disconnect User.')
             await MEMBER.edit(voice_channel=None)
     else:
-        return
+        #return
     
 client.run(TOKEN)
