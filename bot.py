@@ -2,7 +2,7 @@
 
 import os
 import discord
-from datetime import datetime, time
+import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -18,11 +18,11 @@ async def on_ready():
     print(f'Logged in as {client.user}.')
     
 @client.event
-async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState):
-    check_time = datetime.utcnow().time
+async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
+    check_time = datetime.now(timezone.utc)
     dotw = datetime.now().weekday()
     
-    if dotw < 5 and check_time <= time(21,59):
+    if dotw < 5 and check_time <= datetime.time(21,59):
         if after.channel is None:
             return
         else:
