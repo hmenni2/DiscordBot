@@ -19,7 +19,7 @@ async def on_ready():
     
 @client.event
 async def on_voice_state_update(MEMBER, before: discord.VoiceState, after: discord.VoiceState) -> None:
-    check_time = datetime.utcnow().time()
+    check_time = datetime.now(tz.utc)
     dotw = datetime.now().weekday()
     cutoff = check_time.replace(hour=22, minute=0, second=0, microsecond=0)
     
